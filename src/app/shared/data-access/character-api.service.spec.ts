@@ -4,6 +4,7 @@ import { of } from 'rxjs';
 
 import { CharacterApiService } from './character-api.service';
 import { mockCharacter, mockCharacterApiResponse } from '../testing/mocks';
+import { API_CONFIG } from '../config/api.config';
 
 describe('CharacterApiService', () => {
   let service: CharacterApiService;
@@ -26,7 +27,7 @@ describe('CharacterApiService', () => {
       next: response => {
         expect(response).toEqual(mockCharacterApiResponse);
         expect(service['http'].get).toHaveBeenCalledWith(
-          'https://rickandmortyapi.com/api/character?page=1'
+          `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.CHARACTERS}?page=1`
         );
         done();
       },
@@ -41,7 +42,7 @@ describe('CharacterApiService', () => {
       next: response => {
         expect(response).toEqual(mockCharacter);
         expect(service['http'].get).toHaveBeenCalledWith(
-          'https://rickandmortyapi.com/api/character/1'
+          `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.CHARACTERS}/1`
         );
         done();
       },
@@ -56,7 +57,7 @@ describe('CharacterApiService', () => {
       next: response => {
         expect(response).toEqual(mockCharacterApiResponse);
         expect(service['http'].get).toHaveBeenCalledWith(
-          'https://rickandmortyapi.com/api/character?page=2'
+          `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.CHARACTERS}?page=2`
         );
         done();
       },
