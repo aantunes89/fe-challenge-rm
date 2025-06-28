@@ -1,9 +1,8 @@
-module.exports = {
+export default {
     preset: 'jest-preset-angular',
     setupFilesAfterEnv: ['<rootDir>/setup-jest.ts'],
-    globalSetup: 'jest-preset-angular/global-setup',
     testEnvironment: 'jsdom',
-    moduleNameMapping: {
+    moduleNameMapper: {
         '^src/(.*)$': '<rootDir>/src/$1',
         '^app/(.*)$': '<rootDir>/src/app/$1',
         '^assets/(.*)$': '<rootDir>/src/assets/$1',
@@ -19,8 +18,8 @@ module.exports = {
     coverageDirectory: 'coverage',
     coverageReporters: ['text', 'lcov', 'html'],
     testMatch: [
-        '<rootDir>/src/**/__tests__/**/*.ts',
-        '<rootDir>/src/**/?(*.)+(spec|test).ts'
+        '<rootDir>/src/**/*.spec.ts',
+        '<rootDir>/src/**/*.test.ts'
     ],
     transform: {
         '^.+\\.(ts|js|html)$': [
