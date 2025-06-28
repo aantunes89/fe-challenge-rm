@@ -1,6 +1,6 @@
 {
   "src/**/*.ts": [
     "eslint --fix",
-    "ng test --watch=false --browsers=ChromeHeadless"
+    "jest --bail --findRelatedTests"
   ]
 }
