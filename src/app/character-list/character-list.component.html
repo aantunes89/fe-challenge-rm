@@ -1,13 +1,15 @@
 <section class="character-list">
-  @if (loading$ | async) {
-    <div class="loading">Loading characters...</div>
-  } @else {
-    @if (error$ | async; as error) {
+  @switch ((viewState$ | async)?.state) {
+    @case (ViewState.LOADING) {
+      <div class="loading">Loading characters...</div>
+    }
+    @case (ViewState.ERROR) {
       <div class="error">
-        <p>Error loading characters: {{ error }}</p>
+        <p>Error loading characters: {{ (viewState$ | async)?.error }}</p>
         <button (click)="loadCharacters()">Retry</button>
       </div>
-    } @else {
+    }
+    @case (ViewState.CONTENT) {
       <div class="character-grid">
         @for (character of characters$ | async; track character.id) {
           <div class="character-card">
