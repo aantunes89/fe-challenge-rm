@@ -6,9 +6,9 @@ import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
-import { routes } from './app.routes';
-import { characterListReducer } from './character-list/store/character-list.reducer';
-import { CharacterListEffects } from './character-list/store/character-list.effects';
+import { routes } from '@app/app.routes';
+import { characterListReducer } from '@app/character-list/store/character-list.reducer';
+import { CharacterListEffects } from '@app/character-list/store/character-list.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
