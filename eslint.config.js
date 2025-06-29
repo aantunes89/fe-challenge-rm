@@ -4,7 +4,6 @@ import typescriptParser from '@typescript-eslint/parser';
 import angular from '@angular-eslint/eslint-plugin';
 import angularTemplate from '@angular-eslint/eslint-plugin-template';
 import prettier from 'eslint-plugin-prettier';
-import prettierConfig from 'eslint-config-prettier';
 import jestPlugin from 'eslint-plugin-jest';
 
 const jestGlobals = {
@@ -94,16 +93,6 @@ export default [
     },
   },
   {
-    files: ['**/*.component.html'],
-    plugins: {
-      '@angular-eslint': angular,
-      '@angular-eslint/template': angularTemplate,
-    },
-    rules: {
-      ...angularTemplate.configs.recommended.rules,
-    },
-  },
-  {
     ignores: [
       // Dependencies
       'node_modules/**',
@@ -164,7 +153,7 @@ export default [
 
       // HTML files that are not Angular templates
       'src/index.html',
-      'src/app/app.component.html',
+      '**/*.component.html',
 
       // TypeScript build info
       '*.tsbuildinfo',
@@ -195,20 +184,6 @@ export default [
       '.env.test.local',
       '.env.production.local',
       '.env.local',
-
-      // Next.js build output
-      '.next/**',
-
-      // Nuxt.js build / generate output
-      '.nuxt/**',
-
-      // Gatsby files
-      'public/**',
-
-      // Storybook build outputs
-      '.out/**',
-      '.storybook-out/**',
     ],
   },
-  prettierConfig,
 ];
