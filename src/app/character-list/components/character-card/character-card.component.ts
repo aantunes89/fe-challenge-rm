@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { NgClass } from '@angular/common';
+
 import { Character } from '../../../shared/models/character.interface';
 
 @Component({
   selector: 'app-character-card',
   standalone: true,
-  imports: [NgClass],
+  imports: [],
   templateUrl: './character-card.component.html',
   styleUrl: './character-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
