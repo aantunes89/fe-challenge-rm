@@ -31,8 +31,9 @@ describe('CharacterListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call loadCharacters on init', () => {
+  it('should dispatch loadCharacters action when component initializes', () => {
     const dispatchSpy = jest.spyOn(store, 'dispatch');
+
     component.ngOnInit();
 
     expect(dispatchSpy).toHaveBeenCalled();
