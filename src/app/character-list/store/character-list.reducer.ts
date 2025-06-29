@@ -17,7 +17,7 @@ export const characterListReducer = createReducer(
     ...state,
     loading: true,
     error: null,
-    currentPage: 0,
+    currentPage: 1,
   })),
 
   on(CharacterListActions.loadCharacterListSuccess, (state, { data }) => ({
@@ -25,7 +25,6 @@ export const characterListReducer = createReducer(
     data,
     loading: false,
     error: null,
-    currentPage: 1,
   })),
 
   on(CharacterListActions.loadCharacterListFailure, (state, { error }) => ({
