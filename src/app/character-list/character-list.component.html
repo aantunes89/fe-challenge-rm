@@ -1,28 +1,30 @@
-<section class="character-list">
+<div class="character-list">
   @switch ((viewState$ | async)?.state) {
     @case (ViewState.LOADING) {
-      <div class="loading">Loading characters...</div>
+      <div class="character-list__loading">
+        <div class="character-list__loading-spinner"></div>
+        <p class="character-list__loading-text">Loading characters...</p>
+      </div>
     }
     @case (ViewState.ERROR) {
-      <div class="error">
-        <p>Error loading characters: {{ (viewState$ | async)?.error }}</p>
-        <button (click)="loadCharacters()">Retry</button>
+      <div class="character-list__error">
+        <div class="character-list__error-icon">⚠️</div>
+        <p class="character-list__error-message">
+          Error loading characters: {{ (viewState$ | async)?.error }}
+        </p>
+        <button class="character-list__error-button" (click)="loadCharacters()">Retry</button>
       </div>
     }
     @case (ViewState.CONTENT) {
-      <div class="character-grid">
+      <div class="character-list__header">
+        <h2 class="character-list__title">Characters</h2>
+        <p class="character-list__subtitle">Explore the Rick and Morty universe</p>
+      </div>
+      <div class="character-list__grid">
         @for (character of characters$ | async; track character.id) {
-          <div class="character-card">
-            <img [src]="character.image" [alt]="character.name" class="character-image" />
-            <div class="character-info">
-              <h3>{{ character.name }}</h3>
-              <p><strong>Status:</strong> {{ character.status }}</p>
-              <p><strong>Species:</strong> {{ character.species }}</p>
-              <p><strong>Gender:</strong> {{ character.gender }}</p>
-            </div>
-          </div>
+          <app-character-card [character]="character"></app-character-card>
         }
       </div>
     }
   }
-</section>
+</div>

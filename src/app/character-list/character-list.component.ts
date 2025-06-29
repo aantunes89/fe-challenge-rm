@@ -9,11 +9,12 @@ import { CharacterListState } from './types';
 import { ViewState } from './enums';
 import * as CharacterListActions from './store/character-list.actions';
 import * as CharacterListSelectors from './store/character-list.selectors';
+import { CharacterCardComponent } from './components/character-card/character-card.component';
 
 @Component({
   selector: 'app-character-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CharacterCardComponent],
   templateUrl: './character-list.component.html',
   styleUrl: './character-list.component.scss',
 })

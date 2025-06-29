@@ -15,5 +15,4 @@ export interface Character {
   };
   image: string;
   url: string;
-  created: string;
 }

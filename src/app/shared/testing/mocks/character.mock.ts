@@ -19,7 +19,6 @@ export const mockCharacter: Character = {
   },
   image: `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.CHARACTERS}/avatar/1.jpeg`,
   url: `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.CHARACTERS}/1`,
-  created: '2017-11-04T18:48:46.250Z',
 };
 
 export const mockCharacter2: Character = {
@@ -39,7 +38,6 @@ export const mockCharacter2: Character = {
   },
   image: `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.CHARACTERS}/avatar/2.jpeg`,
   url: `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.CHARACTERS}/2`,
-  created: '2017-11-04T18:50:21.651Z',
 };
 
 export const mockCharacterApiResponse: CharacterApiResponse = {
@@ -62,7 +60,6 @@ export const mockCharacterApiResponseWithPagination: CharacterApiResponse = {
   results: [mockCharacter, mockCharacter2],
 };
 
-// Factory function para criar mocks dinâmicos
 export const createMockCharacter = (overrides: Partial<Character> = {}): Character => ({
   ...mockCharacter,
   ...overrides,
