@@ -13,6 +13,7 @@ describe('CharacterListComponent', () => {
     data: [],
     loading: false,
     error: null,
+    currentPage: 1,
   };
 
   beforeEach(async () => {

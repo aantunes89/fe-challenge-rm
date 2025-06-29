@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest, map } from 'rxjs';
 
-import { ScrollingModule } from '@angular/cdk/scrolling';
+import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 
 import { Character } from '@shared/models/character.interface';
 import { CharacterListState } from '@app/character-list/types';
@@ -16,7 +16,7 @@ import { CharacterCardComponent } from '@app/character-list/components/character
 @Component({
   selector: 'app-character-list',
   standalone: true,
-  imports: [CommonModule, CharacterCardComponent, ScrollingModule],
+  imports: [CommonModule, CharacterCardComponent, InfiniteScrollDirective],
   templateUrl: './character-list.component.html',
   styleUrl: './character-list.component.scss',
 })
@@ -49,5 +49,9 @@ export class CharacterListComponent implements OnInit {
 
   loadCharacters(): void {
     this.store.dispatch(CharacterListActions.loadCharacterList());
+  }
+
+  onScroll() {
+    this.store.dispatch(CharacterListActions.loadNextPage());
   }
 }

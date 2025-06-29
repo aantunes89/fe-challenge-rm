@@ -8,3 +8,8 @@ export const selectCharacters = createSelector(selectCharacterListState, state =
 export const selectLoading = createSelector(selectCharacterListState, state => state.loading);
 
 export const selectError = createSelector(selectCharacterListState, state => state.error);
+
+export const selectCurrentPage = createSelector(
+  selectCharacterListState,
+  state => state.currentPage
+);

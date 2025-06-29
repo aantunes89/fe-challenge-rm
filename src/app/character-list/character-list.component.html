@@ -19,7 +19,7 @@
         <h2 class="character-list__title">Characters</h2>
         <p class="character-list__subtitle">Explore the Rick and Morty universe</p>
       </div>
-      <div class="character-list__grid">
+      <div class="character-list__grid" infiniteScroll (scrolled)="onScroll()">
         @for (character of characters$ | async; track character.id) {
           <app-character-card [character]="character"></app-character-card>
         }

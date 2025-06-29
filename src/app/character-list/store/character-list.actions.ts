@@ -12,3 +12,15 @@ export const loadCharacterListFailure = createAction(
   '[Character List] Load Characters Failure',
   props<{ error: string }>()
 );
+
+export const loadNextPage = createAction('[Character List] Load Next Page');
+
+export const loadNextPageSuccess = createAction(
+  '[Character List] Load Characters Page Success',
+  props<{ data: Character[]; page: number }>()
+);
+
+export const loadNextPageFailure = createAction(
+  '[Character List] Load Characters Page Failure',
+  props<{ error: string; page: number }>()
+);
