@@ -1,0 +1,34 @@
+// Colors
+$color-dark-blue: hsl(209, 23%, 22%);
+$color-very-dark-blue: hsl(207, 26%, 17%);
+$color-very-dark-blue-text: hsl(200, 15%, 8%);
+$color-dark-gray: hsl(0, 0%, 52%);
+$color-very-light-gray: hsl(0, 0%, 98%);
+$color-white: hsl(0, 0%, 100%);
+
+// Typography
+$font-family: 'Nunito Sans', sans-serif;
+$font-weight-light: 300;
+$font-weight-semibold: 600;
+$font-weight-extrabold: 800;
+
+$font-size-body: 14px;
+$font-size-detail: 16px;
+
+// Layout
+$mobile-width: 375px;
+$desktop-width: 1440px;
+
+// Breakpoints
+$breakpoint-mobile: 375px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1440px;
+
+// Box shadow
+$box-shadow-soft:
+  0 1px 2px rgba(0, 0, 0, 0.08),
+  0 1px 3px rgba(0, 0, 0, 0.05);
+
+$box-shadow-soft-all:
+  0 0 6px rgba(0, 0, 0, 0.08),
+  0 0 12px rgba(0, 0, 0, 0.05);
