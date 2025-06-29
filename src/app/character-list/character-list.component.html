@@ -1,0 +1,26 @@
+<section class="character-list">
+  @if (loading$ | async) {
+    <div class="loading">Loading characters...</div>
+  } @else {
+    @if (error$ | async; as error) {
+      <div class="error">
+        <p>Error loading characters: {{ error }}</p>
+        <button (click)="loadCharacters()">Retry</button>
+      </div>
+    } @else {
+      <div class="character-grid">
+        @for (character of characters$ | async; track character.id) {
+          <div class="character-card">
+            <img [src]="character.image" [alt]="character.name" class="character-image" />
+            <div class="character-info">
+              <h3>{{ character.name }}</h3>
+              <p><strong>Status:</strong> {{ character.status }}</p>
+              <p><strong>Species:</strong> {{ character.species }}</p>
+              <p><strong>Gender:</strong> {{ character.gender }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  }
+</section>
