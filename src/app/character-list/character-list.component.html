@@ -12,7 +12,6 @@
         <p class="character-list__error-message">
           Error loading characters: {{ (viewState$ | async)?.error }}
         </p>
-        <button class="character-list__error-button" (click)="loadCharacters()">Retry</button>
       </div>
     }
     @case (ViewState.CONTENT) {

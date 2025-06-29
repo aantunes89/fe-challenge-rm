@@ -1,11 +1,20 @@
-<div class="home-container">
-  <h1>Welcome to the Rick and Morty Explorer!</h1>
-  <p>Discover characters, episodes, and locations from the Rick and Morty universe.</p>
-  <p>
-    Data provided by
-    <a href="https://rickandmortyapi.com" target="_blank" rel="noopener noreferrer">
-      Rick and Morty API </a
-    >.
-  </p>
-  <button routerLink="/characters">Explore Characters</button>
+<div class="home">
+  <div class="home__container">
+    <h1 class="home__title">Welcome to the Rick and Morty Explorer!</h1>
+    <p class="home__description">
+      Discover characters, episodes, and locations from the Rick and Morty universe.
+    </p>
+    <p class="home__api-info">
+      Data provided by
+      <a
+        href="https://rickandmortyapi.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="home__api-link"
+      >
+        Rick and Morty API </a
+      >.
+    </p>
+    <button routerLink="/characters" class="home__cta-button">Explore Characters</button>
+  </div>
 </div>
