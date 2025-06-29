@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
-import { Character } from '../../../shared/models/character.interface';
+import { Character } from '@app/shared/models/character.interface';
 
 @Component({
   selector: 'app-character-card',

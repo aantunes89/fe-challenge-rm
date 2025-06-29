@@ -1,9 +1,10 @@
 import { inject, Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { CharacterApiService } from '../../shared/data-access/character-api.service';
-import * as CharacterListActions from './character-list.actions';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+
+import { CharacterApiService } from '@shared/data-access/character-api.service';
+import * as CharacterListActions from '@app/character-list/store/character-list.actions';
 
 @Injectable()
 export class CharacterListEffects {

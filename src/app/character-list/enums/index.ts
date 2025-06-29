@@ -1,1 +1,1 @@
-export * from './view-state.enum';
+export * from '@app/character-list/enums/view-state.enum';

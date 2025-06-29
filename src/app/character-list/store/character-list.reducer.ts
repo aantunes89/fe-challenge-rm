@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { CharacterListState } from '../types';
-import * as CharacterListActions from './character-list.actions';
+import { CharacterListState } from '@app/character-list/types';
+import * as CharacterListActions from '@app/character-list/store/character-list.actions';
 
 export const initialState: CharacterListState = {
   data: [],

@@ -1,4 +1,4 @@
-import { Character } from '../../shared/models/character.interface';
+import { Character } from '@app/shared/models/character.interface';
 
 export interface CharacterListState {
   data: Character[];

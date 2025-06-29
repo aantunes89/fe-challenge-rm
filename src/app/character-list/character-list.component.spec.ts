@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
-import { CharacterListComponent } from './character-list.component';
-import { CharacterListState } from './types';
+import { CharacterListComponent } from '@app/character-list/character-list.component';
+import { CharacterListState } from '@app/character-list/types';
 
 describe('CharacterListComponent', () => {
   let component: CharacterListComponent;

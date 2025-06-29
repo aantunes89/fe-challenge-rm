@@ -4,17 +4,19 @@ import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest, map } from 'rxjs';
 
-import { Character } from '../shared/models/character.interface';
-import { CharacterListState } from './types';
-import { ViewState } from './enums';
-import * as CharacterListActions from './store/character-list.actions';
-import * as CharacterListSelectors from './store/character-list.selectors';
-import { CharacterCardComponent } from './components/character-card/character-card.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+
+import { Character } from '@shared/models/character.interface';
+import { CharacterListState } from '@app/character-list/types';
+import { ViewState } from '@app/character-list/enums';
+import * as CharacterListActions from '@app/character-list/store/character-list.actions';
+import * as CharacterListSelectors from '@app/character-list/store/character-list.selectors';
+import { CharacterCardComponent } from '@app/character-list/components/character-card/character-card.component';
 
 @Component({
   selector: 'app-character-list',
   standalone: true,
-  imports: [CommonModule, CharacterCardComponent],
+  imports: [CommonModule, CharacterCardComponent, ScrollingModule],
   templateUrl: './character-list.component.html',
   styleUrl: './character-list.component.scss',
 })
