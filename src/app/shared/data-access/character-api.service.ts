@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Character } from '../models/character.interface';
-import { CharacterApiResponse } from '../models/character-api-response.interface';
-import { API_CONFIG } from '../config/api.config';
+
+import { Character } from '@shared/models/character.interface';
+import { CharacterApiResponse } from '@shared/models/character-api-response.interface';
+import { API_CONFIG } from '@shared/config/api.config';
 
 @Injectable({
   providedIn: 'root',

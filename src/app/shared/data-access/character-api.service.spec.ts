@@ -2,9 +2,9 @@ import { TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { of } from 'rxjs';
 
-import { CharacterApiService } from './character-api.service';
-import { mockCharacter, mockCharacterApiResponse } from '../testing/mocks';
-import { API_CONFIG } from '../config/api.config';
+import { CharacterApiService } from '@shared/data-access/character-api.service';
+import { mockCharacter, mockCharacterApiResponse } from '@shared/testing/mocks';
+import { API_CONFIG } from '@shared/config/api.config';
 
 describe('CharacterApiService', () => {
   let service: CharacterApiService;

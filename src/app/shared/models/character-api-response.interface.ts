@@ -1,4 +1,4 @@
-import { Character } from './character.interface';
+import { Character } from '@shared/models/character.interface';
 
 export interface CharacterApiResponse {
   info: {

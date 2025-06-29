@@ -1,1 +1,1 @@
-export * from './character.mock';
+export * from '@shared/testing/mocks/character.mock';
