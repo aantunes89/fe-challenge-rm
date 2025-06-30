@@ -21,4 +21,10 @@ describe('HeaderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should display the correct title', () => {
+    const compiled = fixture.nativeElement;
+    const titleElement = compiled.querySelector('.header__logo-text');
+    expect(titleElement.textContent).toContain('Ricky And Morty App');
+  });
 });

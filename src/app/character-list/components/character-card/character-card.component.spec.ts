@@ -50,4 +50,16 @@ describe('CharacterCardComponent', () => {
     expect(detailValues[1].textContent.trim()).toBe('Male');
     expect(detailValues[2].textContent.trim()).toBe('Earth (C-137)');
   });
+  it('should return lowercase status', () => {
+    component.character = { ...mockCharacter, status: 'Alive' };
+    expect(component.statusBadge).toBe('alive');
+  });
+
+  it('should return lowercase status for different statuses', () => {
+    component.character = { ...mockCharacter, status: 'Dead' };
+    expect(component.statusBadge).toBe('dead');
+
+    component.character = { ...mockCharacter, status: 'unknown' };
+    expect(component.statusBadge).toBe('unknown');
+  });
 });

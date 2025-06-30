@@ -21,12 +21,12 @@ describe('CharacterApiService', () => {
   });
 
   it('should get characters successfully', done => {
-    jest.spyOn(service['http'], 'get').mockReturnValue(of(mockCharacterApiResponse) as any);
+    jest.spyOn(service.http, 'get').mockReturnValue(of(mockCharacterApiResponse) as any);
 
     service.getCharacters().subscribe({
       next: response => {
         expect(response).toEqual(mockCharacterApiResponse);
-        expect(service['http'].get).toHaveBeenCalledWith(
+        expect(service.http.get).toHaveBeenCalledWith(
           `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.CHARACTERS}?page=1`
         );
         done();
@@ -36,12 +36,12 @@ describe('CharacterApiService', () => {
   });
 
   it('should get character by id successfully', done => {
-    jest.spyOn(service['http'], 'get').mockReturnValue(of(mockCharacter) as any);
+    jest.spyOn(service.http, 'get').mockReturnValue(of(mockCharacter) as any);
 
     service.getCharacterById(1).subscribe({
       next: response => {
         expect(response).toEqual(mockCharacter);
-        expect(service['http'].get).toHaveBeenCalledWith(
+        expect(service.http.get).toHaveBeenCalledWith(
           `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.CHARACTERS}/1`
         );
         done();
@@ -51,12 +51,12 @@ describe('CharacterApiService', () => {
   });
 
   it('should get characters with custom page', done => {
-    jest.spyOn(service['http'], 'get').mockReturnValue(of(mockCharacterApiResponse) as any);
+    jest.spyOn(service.http, 'get').mockReturnValue(of(mockCharacterApiResponse) as any);
 
     service.getCharacters(2).subscribe({
       next: response => {
         expect(response).toEqual(mockCharacterApiResponse);
-        expect(service['http'].get).toHaveBeenCalledWith(
+        expect(service.http.get).toHaveBeenCalledWith(
           `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.CHARACTERS}?page=2`
         );
         done();
