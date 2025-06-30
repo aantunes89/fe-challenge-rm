@@ -21,7 +21,10 @@
       </div>
       <div class="character-list__grid" infiniteScroll (scrolled)="onScroll()">
         @for (character of characters$ | async; track character.id) {
-          <app-character-card [character]="character"></app-character-card>
+          <app-character-card
+            [character]="character"
+            (click)="onCardSelected(character.id)"
+          ></app-character-card>
         }
       </div>
     }

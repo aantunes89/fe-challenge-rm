@@ -12,6 +12,7 @@ import { ViewState } from '@app/character-list/enums';
 import * as CharacterListActions from '@app/character-list/store/character-list.actions';
 import * as CharacterListSelectors from '@app/character-list/store/character-list.selectors';
 import { CharacterCardComponent } from '@app/character-list/components/character-card/character-card.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-character-list',
@@ -22,11 +23,13 @@ import { CharacterCardComponent } from '@app/character-list/components/character
 })
 export class CharacterListComponent implements OnInit {
   readonly store = inject(Store<{ characterList: CharacterListState }>);
+  readonly router = inject(Router);
 
   characters$: Observable<Character[]>;
   loading$: Observable<boolean>;
   error$: Observable<string | null>;
   viewState$: Observable<{ state: ViewState; error?: string }>;
+
   ViewState = ViewState;
 
   constructor() {
@@ -53,5 +56,9 @@ export class CharacterListComponent implements OnInit {
 
   onScroll() {
     this.store.dispatch(CharacterListActions.loadNextPage());
+  }
+
+  onCardSelected(characterId: number) {
+    this.router.navigateByUrl(`/characters/${characterId}`);
   }
 }

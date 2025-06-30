@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 import { CharacterListComponent } from '@app/character-list/character-list.component';
@@ -19,7 +20,7 @@ describe('CharacterListComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [CharacterListComponent],
-      providers: [provideMockStore({ initialState })],
+      providers: [provideMockStore({ initialState }), provideRouter([])],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CharacterListComponent);
