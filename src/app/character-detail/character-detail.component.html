@@ -1,62 +1,57 @@
-<div class="character-detail">
+<section class="character__detail">
   @if (loading$ && !character$) {
-    <div class="character-detail__container">
-      <div class="character-detail__loading">
-        <div class="character-detail__loading-spinner"></div>
-        <p class="character-detail__loading-text">Loading character...</p>
-      </div>
+    <div class="character__detail__loading">
+      <span class="character__detail__loading-spinner"></span>
+      <p>Loading character...</p>
     </div>
   }
 
   @if (!loading$ && error$; as error) {
-    <div class="character-detail__container">
-      <div class="character-detail__error">
-        <div class="character-detail__error-icon">⚠️</div>
-        <p class="character-detail__error-message">Error loading character: {{ error }}</p>
-      </div>
+    <div class="character__detail__error">
+      <span class="character__detail__error-icon">⚠️</span>
+      <p>Error loading character: {{ error }}</p>
     </div>
   }
 
-  @if (character$ | async; as characterData) {
-    <div class="character-detail__container character-detail__container--row">
-      <div class="character-detail__image-wrapper character-detail__image-wrapper--side">
-        <img
-          [src]="characterData.image"
-          [alt]="characterData.name"
-          class="character-detail__image"
-        />
-      </div>
-      <div class="character-detail__info character-detail__info--side">
-        <h2 class="character-detail__name">{{ characterData.name }}</h2>
-        <div class="character-detail__meta character-detail__meta--stacked">
-          <div class="character-detail__status"><b>Status:</b> {{ characterData.status }}</div>
-          <div class="character-detail__species"><b>Species:</b> {{ characterData.species }}</div>
-          @if (characterData.type) {
-            <div class="character-detail__type"><b>Type:</b> {{ characterData.type }}</div>
-          }
-          <div class="character-detail__gender"><b>Gender:</b> {{ characterData.gender }}</div>
+  @if (character$ | async; as character) {
+    <div class="character__container">
+      <section class="character__header">
+        <figure class="character__image">
+          <img [src]="character.image" [alt]="character.name" />
+        </figure>
+      </section>
+
+      <section class="character__info">
+        <h2 class="character__info__name">{{ character.name }}</h2>
+
+        <div class="character__info__info-row">
+          <span class="character__info__label">Status:</span>
+          <span class="character__info__value">{{ character.status }}</span>
         </div>
-        <div class="character-detail__details-list">
-          <div><span class="character-detail__label">ID:</span> {{ characterData.id }}</div>
-          <div>
-            <span class="character-detail__label">Origin:</span> {{ characterData.origin.name }}
-            @if (characterData.origin.url) {
-              <a [href]="characterData.origin.url" target="_blank">(link)</a>
-            }
-          </div>
-          <div>
-            <span class="character-detail__label">Last Location:</span>
-            {{ characterData.location.name }}
-            @if (characterData.location.url) {
-              <a [href]="characterData.location.url" target="_blank">(link)</a>
-            }
-          </div>
-          <div>
-            <span class="character-detail__label">API URL:</span>
-            <a [href]="characterData.url" target="_blank">{{ characterData.url }}</a>
-          </div>
+
+        <div class="character__info__info-row">
+          <span class="character__info__label">Status:</span>
+          <span class="character__info__value">{{ character.status }}</span>
         </div>
-      </div>
+
+        <div class="character__info__info-row">
+          <span class="character__info__label">Gender:</span>
+          <span class="character__info__value">{{ character.gender }}</span>
+        </div>
+
+        <div class="character__info__info-row">
+          <span class="character__info__label">Origin:</span>
+          <span class="character__info__value">
+            {{ character.origin?.name }}
+          </span>
+        </div>
+        <div class="character__info__info-row">
+          <span class="character__info__label">Last Location:</span>
+          <span class="character__info__value">
+            {{ character.location?.name }}
+          </span>
+        </div>
+      </section>
     </div>
   }
-</div>
+</section>
