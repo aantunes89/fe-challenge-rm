@@ -45,14 +45,32 @@ export const characterListReducer = createReducer(
     totalPages,
   })),
 
+  on(CharacterListActions.loadNextPage, state => ({
+    ...state,
+    currentPage: state.currentPage + 1,
+  })),
+
   on(CharacterListActions.loadNextPageFailure, (state, { error }) => ({
     ...state,
+    currentPage: state.currentPage - 1,
     error,
+  })),
+
+  on(CharacterListActions.loadNextFilteredPage, state => ({
+    ...state,
+    currentPage: state.currentPage + 1,
   })),
 
   on(CharacterListActions.setFilters, (state, { filters }) => ({
     ...state,
     filters,
+    currentPage: 1,
+  })),
+
+  on(CharacterListActions.applyFilters, state => ({
+    ...state,
+    loading: true,
+    error: null,
     currentPage: 1,
   }))
 );
