@@ -39,18 +39,23 @@
           <span class="character__info__value">{{ character.gender }}</span>
         </div>
 
-        <div class="character__info__info-row">
-          <span class="character__info__label">Origin:</span>
-          <span class="character__info__value">
-            {{ character.origin?.name }}
-          </span>
-        </div>
-        <div class="character__info__info-row">
-          <span class="character__info__label">Last Location:</span>
-          <span class="character__info__value">
-            {{ character.location?.name }}
-          </span>
-        </div>
+        @if (character.origin) {
+          <div class="character__info__info-row">
+            <span class="character__info__label">Origin:</span>
+            <span class="character__info__value">
+              {{ character.origin.name }}
+            </span>
+          </div>
+        }
+
+        @if (character.location) {
+          <div class="character__info__info-row">
+            <span class="character__info__label">Last Location:</span>
+            <span class="character__info__value">
+              {{ character.location.name }}
+            </span>
+          </div>
+        }
       </section>
     </div>
   }

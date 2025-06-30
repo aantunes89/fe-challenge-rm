@@ -116,13 +116,14 @@
   }
 
   &__error-message {
+    color: $color-red-alpha-90;
     font-size: $text-lg;
-    color: $color-gray-700;
-    margin-bottom: 1.5rem;
-    line-height: 1.5;
+    font-weight: $font-weight-bold;
+    margin-bottom: $spacing-3;
+  }
 
-    @include tablet {
-      font-size: $text-base;
-    }
+  &__reload-btn {
+    @include app-button($color-green-alpha-90, $color-dark-blue);
+    margin-top: $spacing-4;
   }
 }

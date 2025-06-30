@@ -7,10 +7,10 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 import { routes } from '@app/app.routes';
-import { characterListReducer } from '@app/character-list/store';
-import { CharacterListEffects } from '@app/character-list/store';
-import { CharacterDetailsEffects } from '@app/character-detail/store';
-import { characterDetailReducer } from '@app/character-detail/store';
+import { characterListReducer } from '@app/character-list/store/character-list.reducer';
+import { CharacterListEffects } from '@app/character-list/store/character-list.effects';
+import { CharacterDetailsEffects } from '@app/character-detail/store/character-detail.effects';
+import { characterDetailReducer } from '@app/character-detail/store/character-detail.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [

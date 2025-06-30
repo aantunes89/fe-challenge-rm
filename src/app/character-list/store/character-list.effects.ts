@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { catchError, map, switchMap, withLatestFrom } from 'rxjs/operators';
+import { catchError, map, switchMap, withLatestFrom, filter } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
@@ -7,6 +7,8 @@ import { Store } from '@ngrx/store';
 import { CharacterApiService } from '@shared/data-access/character-api.service';
 import * as CharacterListActions from '@app/character-list/store/character-list.actions';
 import * as CharacterListSelectors from '@app/character-list/store/character-list.selectors';
+import { extractApiError } from '@app/character-list/utils/extract-api-error';
+import { hasActiveFilters } from '@app/character-list/utils/has-active-filters';
 
 @Injectable()
 export class CharacterListEffects {
@@ -19,18 +21,19 @@ export class CharacterListEffects {
       ofType(CharacterListActions.loadCharacterList),
       switchMap(() =>
         this.characterApiService.getCharacters().pipe(
-          map(response =>
+          map(({ results: data, info }) =>
             CharacterListActions.loadCharacterListSuccess({
-              data: response.results,
+              data,
+              totalPages: info?.pages ?? null,
             })
           ),
-          catchError(error =>
-            of(
+          catchError(error => {
+            return of(
               CharacterListActions.loadCharacterListFailure({
-                error: error.message || 'Failed to load characters',
+                error: extractApiError(error, 'Failed to load characters'),
               })
-            )
-          )
+            );
+          })
         )
       )
     )
@@ -39,24 +42,88 @@ export class CharacterListEffects {
   loadNextPage$ = createEffect(() =>
     this.actions$.pipe(
       ofType(CharacterListActions.loadNextPage),
-      withLatestFrom(this.store.select(CharacterListSelectors.selectCurrentPage)),
-      switchMap(([, currentPage]) => {
+      withLatestFrom(this.store.select(CharacterListSelectors.selectPaginationAndFilters)),
+      map(([, { currentPage, totalPages }]) => {
         const nextPage = currentPage + 1;
-        return this.characterApiService.getCharacters(nextPage).pipe(
-          map(response =>
+        return { currentPage, nextPage, totalPages };
+      }),
+      filter(({ currentPage, totalPages }) => totalPages == null || currentPage < totalPages),
+      switchMap(({ nextPage }) =>
+        this.characterApiService.getCharacters(nextPage).pipe(
+          map(({ results: data, info }) =>
             CharacterListActions.loadNextPageSuccess({
-              data: response.results,
+              data,
               page: nextPage,
+              totalPages: info?.pages ?? null,
             })
           ),
-          catchError(error =>
-            of(
+          catchError(error => {
+            return of(
               CharacterListActions.loadNextPageFailure({
-                error: error.message || 'Failed to load next page',
+                error: extractApiError(error, 'Failed to load next page'),
                 page: nextPage,
               })
-            )
-          )
+            );
+          })
+        )
+      )
+    )
+  );
+
+  loadNextFilteredPage$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(CharacterListActions.loadNextFilteredPage),
+      withLatestFrom(this.store.select(CharacterListSelectors.selectPaginationAndFilters)),
+      map(([, { currentPage, totalPages, filters }]) => {
+        const nextPage = currentPage + 1;
+        return { currentPage, nextPage, totalPages, filters };
+      }),
+      filter(({ currentPage, totalPages }) => totalPages == null || currentPage < totalPages),
+      switchMap(({ nextPage, filters }) =>
+        this.characterApiService.getCharactersByFilters(filters, nextPage).pipe(
+          map(({ results: data, info }) =>
+            CharacterListActions.loadNextPageSuccess({
+              data,
+              page: nextPage,
+              totalPages: info?.pages ?? null,
+            })
+          ),
+          catchError(error => {
+            return of(
+              CharacterListActions.loadNextPageFailure({
+                error: extractApiError(error, 'Failed to load next page'),
+                page: nextPage,
+              })
+            );
+          })
+        )
+      )
+    )
+  );
+
+  applyFilters$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(CharacterListActions.applyFilters),
+      withLatestFrom(this.store.select(CharacterListSelectors.selectFilters)),
+      switchMap(([, filters]) => {
+        if (!hasActiveFilters(filters)) {
+          return of(CharacterListActions.loadCharacterList());
+        }
+
+        return this.characterApiService.getCharactersByFilters(filters, 1).pipe(
+          map(({ results: data, info }) =>
+            CharacterListActions.loadCharacterListSuccess({
+              data,
+              totalPages: info?.pages ?? null,
+            })
+          ),
+          catchError(error => {
+            return of(
+              CharacterListActions.loadCharacterListFailure({
+                error: extractApiError(error, 'Failed to load characters'),
+              })
+            );
+          })
         );
       })
     )

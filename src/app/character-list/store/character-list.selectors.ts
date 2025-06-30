@@ -13,3 +13,13 @@ export const selectCurrentPage = createSelector(
   selectCharacterListState,
   state => state.currentPage
 );
+
+export const selectFilters = createSelector(selectCharacterListState, state => state.filters);
+
+export const selectTotalPages = createSelector(selectCharacterListState, state => state.totalPages);
+
+export const selectPaginationAndFilters = createSelector(selectCharacterListState, state => ({
+  currentPage: state.currentPage,
+  totalPages: state.totalPages,
+  filters: state.filters,
+}));

@@ -15,6 +15,13 @@ describe('CharacterListComponent', () => {
     loading: false,
     error: null,
     currentPage: 1,
+    filters: {
+      name: undefined,
+      status: undefined,
+      species: undefined,
+      gender: undefined,
+    },
+    totalPages: 42,
   };
 
   beforeEach(async () => {

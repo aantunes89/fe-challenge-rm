@@ -1,14 +1,7 @@
 import { Component, EventEmitter, Output, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
-
-export interface CharacterFilter {
-  name?: string;
-  status?: 'alive' | 'dead' | 'unknown' | '';
-  species?: string;
-  type?: string;
-  gender?: 'female' | 'male' | 'genderless' | 'unknown' | '';
-}
+import { CharacterFilter } from '@app/character-list/types/character-filter.type';
 
 @Component({
   selector: 'app-character-filter',
@@ -19,6 +12,7 @@ export interface CharacterFilter {
 })
 export class CharacterFilterComponent {
   @Output() filterChange = new EventEmitter<CharacterFilter>();
+  @Output() applyFilters = new EventEmitter<CharacterFilter>();
 
   filterForm: FormGroup;
   private fb = inject(FormBuilder);
@@ -28,12 +22,14 @@ export class CharacterFilterComponent {
       name: [''],
       status: [''],
       species: [''],
-      type: [''],
       gender: [''],
+    });
+    this.filterForm.valueChanges.subscribe(value => {
+      this.filterChange.emit(value);
     });
   }
 
   onFilterClick() {
-    this.filterChange.emit(this.filterForm.value);
+    this.applyFilters.emit(this.filterForm.getRawValue());
   }
 }

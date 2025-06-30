@@ -1,22 +1,23 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest, map } from 'rxjs';
-
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
+import { take } from 'rxjs/operators';
 
-import { Character } from '@shared/models/character.interface';
-import { CharacterListState } from '@app/character-list/types';
-import { ViewState } from '@app/character-list/enums';
+import { UnsubscribleComponent } from '@app/shared/components/unsubscrible/unsubscrible.component';
+import { CharacterCardComponent, CharacterFilterComponent } from '@app/character-list/components';
+
 import * as CharacterListActions from '@app/character-list/store/character-list.actions';
 import * as CharacterListSelectors from '@app/character-list/store/character-list.selectors';
-import { CharacterCardComponent } from '@app/character-list/components/character-card/character-card.component';
-import { Router } from '@angular/router';
-import {
-  CharacterFilterComponent,
-  CharacterFilter,
-} from './components/character-filter/character-filter.component';
+import { selectFilters } from '@app/character-list/store/character-list.selectors';
+
+import { hasActiveFilters } from '@app/character-list/utils/has-active-filters';
+import { ViewState } from '@app/character-list/enums';
+import { CharacterListState, CharacterFilter } from '@app/character-list/types';
+import { Character } from '@shared/models/character.interface';
 
 @Component({
   selector: 'app-character-list',
@@ -30,9 +31,10 @@ import {
   templateUrl: './character-list.component.html',
   styleUrl: './character-list.component.scss',
 })
-export class CharacterListComponent implements OnInit {
+export class CharacterListComponent extends UnsubscribleComponent implements OnInit {
   readonly store = inject(Store<{ characterList: CharacterListState }>);
   readonly router = inject(Router);
+  readonly cdr = inject(ChangeDetectorRef);
 
   characters$: Observable<Character[]>;
   loading$: Observable<boolean>;
@@ -41,7 +43,11 @@ export class CharacterListComponent implements OnInit {
 
   ViewState = ViewState;
 
+  @ViewChild('grid', { static: false }) gridRef?: ElementRef<HTMLDivElement>;
+
   constructor() {
+    super();
+
     this.characters$ = this.store.select(CharacterListSelectors.selectCharacters);
     this.loading$ = this.store.select(CharacterListSelectors.selectLoading);
     this.error$ = this.store.select(CharacterListSelectors.selectError);
@@ -64,16 +70,29 @@ export class CharacterListComponent implements OnInit {
   }
 
   onScroll() {
-    this.store.dispatch(CharacterListActions.loadNextPage());
+    this.store
+      .select(selectFilters)
+      .pipe(take(1))
+      .subscribe((filters: Partial<CharacterFilter>) => {
+        if (hasActiveFilters(filters)) {
+          this.store.dispatch(CharacterListActions.loadNextFilteredPage());
+        } else {
+          this.store.dispatch(CharacterListActions.loadNextPage());
+        }
+      });
   }
 
   onCardSelected(characterId: number) {
     this.router.navigateByUrl(`/characters/${characterId}`);
   }
 
-  onFilterChange(filter: CharacterFilter) {
-    console.log(filter);
-    // TODO: Dispatch filter action
-    // this.store.dispatch(CharacterListActions.updateFilters({ filters: filter }));
+  onFilterChange(filter: Partial<CharacterFilter>) {
+    this.store.dispatch(CharacterListActions.setFilters({ filters: filter }));
+  }
+
+  applyFilters() {
+    this.store.dispatch(CharacterListActions.applyFilters());
+    this.cdr.detectChanges();
+    this.gridRef?.nativeElement.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }
