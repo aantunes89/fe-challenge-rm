@@ -1,0 +1,204 @@
+@import 'variables';
+
+.character-detail {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $color-very-light-gray;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: $color-white;
+    border-radius: $border-radius-lg;
+    box-shadow: $shadow-lg;
+    padding: $spacing-6 $spacing-6;
+    max-width: 80rem;
+    min-width: 48rem;
+    min-height: 55rem;
+    width: 90vw;
+    margin: $spacing-6 auto;
+    @include tablet {
+      max-width: 98vw;
+      min-width: unset;
+      padding: $spacing-5 $spacing-4;
+      min-height: 40rem;
+    }
+    @include mobile {
+      max-width: 100vw;
+      padding: $spacing-5 $spacing-1;
+      min-height: unset;
+    }
+  }
+
+  &__container--row {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-10;
+    padding-left: $spacing-10;
+    padding-right: $spacing-10;
+    @include mobile {
+      flex-direction: column;
+      align-items: center;
+      gap: $spacing-4;
+      padding-left: $spacing-2;
+      padding-right: $spacing-2;
+    }
+  }
+
+  &__image-wrapper {
+    width: 20rem;
+    height: 20rem;
+    border-radius: $border-radius-full;
+    overflow: hidden;
+    box-shadow: $shadow-lg;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: $spacing-8;
+    background: $color-gray-100;
+    @include mobile {
+      width: 12rem;
+      height: 12rem;
+    }
+  }
+
+  &__image-wrapper--side {
+    width: 12rem;
+    height: 12rem;
+    min-width: 12rem;
+    min-height: 12rem;
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include mobile {
+      width: 9rem;
+      height: 9rem;
+      min-width: 9rem;
+      min-height: 9rem;
+      margin-bottom: $spacing-4;
+    }
+  }
+
+  &__info--side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: $spacing-5;
+    min-height: 100%;
+    @include mobile {
+      text-align: center;
+      align-items: center;
+      gap: $spacing-2;
+    }
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: $border-radius-full;
+    display: block;
+  }
+
+  &__info {
+    width: 100%;
+    text-align: center;
+  }
+
+  &__name {
+    font-size: 3rem;
+    font-weight: $font-weight-extrabold;
+    color: $color-gray-800;
+    margin-bottom: $spacing-5;
+    font-family: $font-family;
+    @include mobile {
+      font-size: 2rem;
+    }
+  }
+
+  &__meta {
+    display: flex;
+    justify-content: center;
+    gap: $spacing-8;
+    margin-bottom: $spacing-6;
+    font-size: 2rem;
+    color: $color-gray-600;
+    font-family: $font-family;
+    @include mobile {
+      font-size: 1.2rem;
+      gap: $spacing-3;
+    }
+  }
+
+  &__status {
+    font-weight: $font-weight-bold;
+    text-transform: capitalize;
+  }
+
+  &__species,
+  &__gender {
+    font-weight: $font-weight-medium;
+    text-transform: capitalize;
+  }
+
+  &__location {
+    margin-top: $spacing-4;
+    font-size: 1.5rem;
+    color: $color-gray-700;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-3;
+    font-family: $font-family;
+    @include mobile {
+      font-size: 1rem;
+    }
+  }
+
+  &__label {
+    font-size: 1.1rem;
+    font-weight: $font-weight-semibold;
+    color: $color-gray-500;
+    text-transform: uppercase;
+    letter-spacing: $letter-spacing-wide;
+    margin-right: $spacing-2;
+    @include mobile {
+      font-size: 0.8rem;
+    }
+  }
+
+  &__loading {
+    font-size: 2rem;
+    color: $color-gray-500;
+    text-align: center;
+    padding: $spacing-10;
+    font-family: $font-family;
+  }
+
+  &__meta--stacked {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-3;
+    width: 100%;
+  }
+
+  &__name,
+  &__status,
+  &__species,
+  &__gender {
+    font-size: 2rem;
+    font-family: $font-family;
+    color: $color-gray-800;
+    font-weight: $font-weight-extrabold;
+    margin-bottom: 0;
+    text-align: center;
+  }
+}
