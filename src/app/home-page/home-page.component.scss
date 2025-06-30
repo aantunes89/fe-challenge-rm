@@ -1,12 +1,12 @@
 @import 'variables';
+@import 'buttons';
 
 .home {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex-layout;
   min-height: 60vh;
   text-align: center;
   position: fixed;
+  width: 100%;
 
   &__container {
     max-width: 600px;
@@ -83,21 +83,17 @@
   }
 
   &__cta-button {
-    background-color: $color-gray-700;
-    color: $color-white;
-    border: none;
-    padding: $spacing-4 $spacing-7;
+    @include app-button($color-gray-700, $color-gray-800);
     font-size: $text-lg;
     font-weight: $font-weight-semibold;
-    border-radius: $border-radius-lg;
-    cursor: pointer;
-    transition: $transition-all;
     text-decoration: none;
     display: inline-block;
     font-family: $font-family;
+    transition: $transition-all;
+    box-shadow: none;
+    transform: translateY(0);
 
     &:hover {
-      background-color: $color-gray-800;
       transform: translateY(-2px);
       box-shadow: $shadow-lg;
     }
