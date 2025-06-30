@@ -1,29 +1,29 @@
 @import 'variables';
 
-// Home Page - BEM Methodology
 .home {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 60vh;
   text-align: center;
+  position: fixed;
 
   &__container {
     max-width: 600px;
-    padding: 2rem;
+    padding: $spacing-6;
     background-color: $color-white;
     border-radius: $border-radius-lg;
     box-shadow: $shadow-sm;
     margin: 0 auto;
 
     @include tablet {
-      padding: 1.5rem;
-      margin: 0 1rem;
+      padding: $spacing-5;
+      margin: 0 $spacing-3;
     }
 
     @include mobile {
-      padding: 1rem;
-      margin: 0 0.5rem;
+      padding: $spacing-4;
+      margin: 0 $spacing-2;
     }
   }
 
@@ -31,13 +31,13 @@
     font-size: 2.5rem;
     font-weight: $font-weight-bold;
     color: $color-gray-800;
-    margin-bottom: 1.5rem;
+    margin-bottom: $spacing-5;
     line-height: 1.2;
     font-family: $font-family;
 
     @include tablet {
       font-size: 2rem;
-      margin-bottom: 1rem;
+      margin-bottom: $spacing-4;
     }
 
     @include mobile {
@@ -48,25 +48,25 @@
   &__description {
     font-size: $text-lg;
     color: $color-gray-700;
-    margin-bottom: 1.5rem;
+    margin-bottom: $spacing-5;
     line-height: 1.6;
     font-family: $font-family;
 
     @include tablet {
       font-size: $text-base;
-      margin-bottom: 1rem;
+      margin-bottom: $spacing-4;
     }
   }
 
   &__api-info {
     font-size: $text-sm;
     color: $color-gray-500;
-    margin-bottom: 2rem;
+    margin-bottom: $spacing-6;
     line-height: 1.5;
     font-family: $font-family;
 
     @include tablet {
-      margin-bottom: 1.5rem;
+      margin-bottom: $spacing-5;
     }
   }
 
@@ -86,7 +86,7 @@
     background-color: $color-gray-700;
     color: $color-white;
     border: none;
-    padding: 1rem 2rem;
+    padding: $spacing-4 $spacing-7;
     font-size: $text-lg;
     font-weight: $font-weight-semibold;
     border-radius: $border-radius-lg;
@@ -107,12 +107,12 @@
     }
 
     @include tablet {
-      padding: 0.875rem 1.75rem;
+      padding: $spacing-3 $spacing-6;
       font-size: $text-base;
     }
 
     @include mobile {
-      padding: 0.75rem 1.5rem;
+      padding: $spacing-2 $spacing-5;
       font-size: $text-sm;
     }
   }

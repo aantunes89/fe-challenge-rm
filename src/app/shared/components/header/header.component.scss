@@ -68,24 +68,23 @@
   }
 
   &__nav-link {
-    color: $color-dark-gray;
-    text-decoration: none;
+    @include app-button(transparent, rgba($color-white, 0.1));
     font-weight: $font-weight-semibold;
     font-family: $font-family;
     font-size: $font-size-detail;
-    padding: $spacing-2 $spacing-3;
-    border-radius: $border-radius-lg;
+    text-decoration: none;
     transition: $transition-all;
     cursor: pointer;
+    color: $color-dark-gray;
 
     &:hover {
       color: $color-white;
-      background-color: rgba($color-white, 0.1);
+      background: rgba($color-white, 0.1);
     }
 
     &.active {
       color: $color-white;
-      background-color: rgba($color-white, 0.15);
+      background: rgba($color-white, 0.15);
     }
 
     @include mobile {

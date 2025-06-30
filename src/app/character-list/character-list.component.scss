@@ -10,6 +10,12 @@
     @include tablet {
       margin-bottom: 1.5rem;
     }
+
+    .character-list__header-btn {
+      @include app-button($color-green-alpha-90, $color-green-alpha-90);
+      margin-top: $spacing-4;
+      margin-bottom: $spacing-4;
+    }
   }
 
   &__title {
@@ -44,6 +50,9 @@
     margin-top: 2rem;
     justify-content: center;
     max-width: 120rem;
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: $spacing-4;
 
     @include desktop {
       grid-template-columns: repeat(2, 1fr);

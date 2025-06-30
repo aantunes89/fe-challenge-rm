@@ -1,0 +1,24 @@
+<form class="character-filter__form" [formGroup]="filterForm" (ngSubmit)="onFilterClick()">
+  <input type="text" class="character-filter__input" placeholder="Name" formControlName="name" />
+  <select class="character-filter__select" formControlName="status">
+    <option value="">Any Status</option>
+    <option value="alive">Alive</option>
+    <option value="dead">Dead</option>
+    <option value="unknown">Unknown</option>
+  </select>
+  <input
+    type="text"
+    class="character-filter__input"
+    placeholder="Species"
+    formControlName="species"
+  />
+  <input type="text" class="character-filter__input" placeholder="Type" formControlName="type" />
+  <select class="character-filter__select" formControlName="gender">
+    <option value="">Any Gender</option>
+    <option value="female">Female</option>
+    <option value="male">Male</option>
+    <option value="genderless">Genderless</option>
+    <option value="unknown">Unknown</option>
+  </select>
+  <button type="submit" class="character-filter__button">Filter</button>
+</form>

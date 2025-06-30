@@ -13,11 +13,20 @@ import * as CharacterListActions from '@app/character-list/store/character-list.
 import * as CharacterListSelectors from '@app/character-list/store/character-list.selectors';
 import { CharacterCardComponent } from '@app/character-list/components/character-card/character-card.component';
 import { Router } from '@angular/router';
+import {
+  CharacterFilterComponent,
+  CharacterFilter,
+} from './components/character-filter/character-filter.component';
 
 @Component({
   selector: 'app-character-list',
   standalone: true,
-  imports: [CommonModule, CharacterCardComponent, InfiniteScrollDirective],
+  imports: [
+    CommonModule,
+    CharacterCardComponent,
+    InfiniteScrollDirective,
+    CharacterFilterComponent,
+  ],
   templateUrl: './character-list.component.html',
   styleUrl: './character-list.component.scss',
 })
@@ -60,5 +69,11 @@ export class CharacterListComponent implements OnInit {
 
   onCardSelected(characterId: number) {
     this.router.navigateByUrl(`/characters/${characterId}`);
+  }
+
+  onFilterChange(filter: CharacterFilter) {
+    console.log(filter);
+    // TODO: Dispatch filter action
+    // this.store.dispatch(CharacterListActions.updateFilters({ filters: filter }));
   }
 }
