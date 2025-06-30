@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CharacterDetailComponent } from './character-detail.component';
+import { provideRouter } from '@angular/router';
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('CharacterDetailComponent', () => {
   let component: CharacterDetailComponent;
@@ -8,9 +9,9 @@ describe('CharacterDetailComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CharacterDetailComponent]
-    })
-    .compileComponents();
+      imports: [CharacterDetailComponent],
+      providers: [provideRouter([]), provideMockStore()],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CharacterDetailComponent);
     component = fixture.componentInstance;
@@ -18,6 +19,6 @@ describe('CharacterDetailComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });
