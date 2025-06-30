@@ -13,7 +13,6 @@ export class CharacterDetailsEffects {
     this.actions$.pipe(
       ofType(CharacterDetailActions.loadCharacter),
       mergeMap(action => {
-        console.log(action);
         return this.characterApiService.getCharacterById(action.id).pipe(
           map(character => CharacterDetailActions.loadCharacterSuccess({ character })),
           catchError(error =>
