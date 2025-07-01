@@ -11,6 +11,7 @@ import { characterListReducer } from '@app/character-list/store/character-list.r
 import { CharacterListEffects } from '@app/character-list/store/character-list.effects';
 import { CharacterDetailsEffects } from '@app/character-detail/store/character-detail.effects';
 import { characterDetailReducer } from '@app/character-detail/store/character-detail.reducer';
+import { themeReducer } from '@app/shared/store/theme.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -20,6 +21,7 @@ export const appConfig: ApplicationConfig = {
     provideStore({
       characterList: characterListReducer,
       characterDetail: characterDetailReducer,
+      theme: themeReducer,
     }),
     provideEffects([CharacterListEffects, CharacterDetailsEffects]),
     provideStoreDevtools({

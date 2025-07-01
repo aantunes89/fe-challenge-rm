@@ -1,5 +1,42 @@
 @import 'variables';
 
+.header.dark {
+  background-color: $color-white;
+  color: $color-dark-blue;
+
+  .header__logo-text {
+    color: $color-dark-blue;
+  }
+
+  .header__nav-link {
+    color: $color-dark-gray;
+
+    &:hover {
+      color: $color-dark-blue;
+    }
+
+    &.active {
+      color: $color-white;
+      background: $color-dark-blue;
+    }
+  }
+
+  .header__theme-toggle {
+    color: $color-dark-gray;
+    border-color: rgba($color-dark-blue, 0.3);
+
+    &:hover {
+      color: $color-dark-blue;
+      background: rgba($color-dark-blue, 0.1);
+      border-color: rgba($color-dark-blue, 0.6);
+    }
+
+    &:focus {
+      outline-color: $color-dark-blue;
+    }
+  }
+}
+
 .header {
   background-color: $color-dark-blue;
   color: $color-white;
@@ -69,17 +106,12 @@
 
   &__nav-link {
     @include app-button(transparent, rgba($color-white, 0.1));
-    font-weight: $font-weight-semibold;
-    font-family: $font-family;
-    font-size: $font-size-detail;
-    text-decoration: none;
-    transition: $transition-all;
-    cursor: pointer;
     color: $color-dark-gray;
+    text-decoration: none;
+    font-size: $font-size-detail;
 
     &:hover {
       color: $color-white;
-      background: rgba($color-white, 0.1);
     }
 
     &.active {
@@ -90,6 +122,38 @@
     @include mobile {
       font-size: $font-size-body;
       padding: $spacing-1-5 $spacing-2;
+    }
+  }
+
+  &__theme-toggle {
+    @include app-button(transparent, rgba($color-white, 0.1));
+    @include flex-layout(row, center, center);
+
+    font-size: $text-lg;
+    padding: $spacing-2;
+    border-radius: $border-radius-full;
+
+    transition: $transition-all;
+
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+
+    &:hover {
+      color: $color-white;
+      background: rgba($color-white, 0.15);
+      border-color: rgba($color-white, 0.6);
+    }
+
+    &:focus {
+      outline: 2px solid $color-white;
+      outline-offset: 2px;
+    }
+
+    @include mobile {
+      font-size: $text-base;
+      padding: $spacing-1-5;
+      min-width: 40px;
+      min-height: 40px;
     }
   }
 }

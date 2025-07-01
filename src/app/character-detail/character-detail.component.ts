@@ -6,8 +6,9 @@ import { selectCharacter, selectCharacterLoading, selectCharacterError } from '.
 import { Observable } from 'rxjs';
 import { Character } from '@app/shared/models/character.interface';
 
-import * as CharacterDetailActions from '@app/character-detail/store/character-detail.actions';
 import { CommonModule } from '@angular/common';
+import * as ThemeSelectors from '@app/shared/store/theme.selectors';
+import * as CharacterDetailActions from '@app/character-detail/store/character-detail.actions';
 
 @Component({
   selector: 'app-character-detail',
@@ -19,6 +20,8 @@ import { CommonModule } from '@angular/common';
 export class CharacterDetailComponent implements OnInit {
   readonly activatedRoute = inject(ActivatedRoute);
   readonly store = inject(Store);
+
+  darkMode$: Observable<boolean> = this.store.select(ThemeSelectors.selectIsDarkMode);
 
   character$: Observable<Character | null> = this.store.select(selectCharacter);
   loading$: Observable<boolean> = this.store.select(selectCharacterLoading);

@@ -8,24 +8,42 @@
     text-align: center;
     padding: $spacing-10;
     font-size: 2rem;
-    color: $color-gray-500;
+    color: $color-gray-700;
   }
 
   &__error {
     text-align: center;
     padding: $spacing-10;
     font-size: 2rem;
-    color: $color-gray-500;
+    color: $color-gray-700;
   }
 
   .character__container {
     @include flex-layout(row, start, space-between);
-    background: $color-white;
+    background: $color-dark-blue;
     border-radius: $border-radius-lg;
     box-shadow: $shadow-lg;
     padding: $spacing-6;
     width: 60vw;
     margin: $spacing-6 auto;
+
+    .character__info__name {
+      color: $color-white;
+    }
+
+    .character__info__label {
+      color: $color-white;
+    }
+
+    .character__info__value {
+      color: $color-white;
+    }
+
+    .character__image {
+      img {
+        border-color: $color-white;
+      }
+    }
   }
 
   .character__header {
@@ -41,7 +59,6 @@
     &__name {
       font-size: 2.2rem;
       font-weight: $font-weight-extrabold;
-      color: $color-gray-800;
       margin-bottom: $spacing-4;
       text-align: left;
     }
@@ -57,18 +74,16 @@
         text-align: left;
       }
       .character__info__label {
-        color: $color-gray-500;
         font-weight: $font-weight-semibold;
         margin-bottom: 0.1rem;
         margin-right: $spacing-3;
       }
       .character__info__value {
-        color: $color-gray-800;
         font-weight: $font-weight-medium;
         word-break: break-word;
       }
       a {
-        color: $color-dark-blue;
+        color: $color-white;
         margin-left: $spacing-1;
         font-size: 1rem;
       }
@@ -91,5 +106,37 @@
       box-shadow: $shadow-lg;
       border: 4px solid $color-gray-100;
     }
+  }
+}
+
+.character__detail.dark {
+  .character__container {
+    background-color: $color-very-light-gray;
+
+    .character__info__name {
+      color: $color-gray-800;
+    }
+
+    .character__info__label {
+      color: $color-gray-500;
+    }
+
+    .character__info__value {
+      color: $color-gray-500;
+    }
+
+    .character__image {
+      img {
+        border-color: $color-gray-600;
+      }
+    }
+  }
+
+  .character__info__label {
+    color: $color-gray-800;
+  }
+
+  .character__info__value {
+    color: $color-gray-500;
   }
 }

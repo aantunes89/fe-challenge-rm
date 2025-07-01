@@ -1,4 +1,4 @@
-<div class="app">
+<div class="app" [class.dark]="isDarkMode$ | async">
   <app-header></app-header>
 
   <main class="app__main">

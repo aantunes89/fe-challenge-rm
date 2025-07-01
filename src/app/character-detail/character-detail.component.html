@@ -1,4 +1,4 @@
-<section class="character__detail">
+<section class="character__detail" [class.dark]="darkMode$ | async">
   @if (loading$ && !character$) {
     <div class="character__detail__loading">
       <span class="character__detail__loading-spinner"></span>

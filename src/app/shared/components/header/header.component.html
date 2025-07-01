@@ -1,4 +1,4 @@
-<header class="header">
+<header class="header" [class.dark]="isDarkMode$ | async">
   <div class="header__container">
     <a routerLink="/" class="header__logo">
       <h1 class="header__logo-text">Ricky And Morty App</h1>
@@ -6,6 +6,13 @@
     <nav class="header__nav">
       <a routerLink="/" routerLinkActive="active" class="header__nav-link">Home</a>
       <a routerLink="/characters" routerLinkActive="active" class="header__nav-link">Characters</a>
+      <button type="button" class="header__theme-toggle" (click)="toggleTheme()">
+        @if (isDarkMode$ | async) {
+          <span>☀️</span>
+        } @else {
+          <span>🌙</span>
+        }
+      </button>
     </nav>
   </div>
 </header>

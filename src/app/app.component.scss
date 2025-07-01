@@ -27,4 +27,9 @@
       padding: 1rem;
     }
   }
+
+  &.dark {
+    background-color: $color-very-dark-blue;
+    color: $color-white;
+  }
 }

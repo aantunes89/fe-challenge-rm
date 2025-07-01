@@ -127,3 +127,36 @@
     margin-top: $spacing-4;
   }
 }
+
+.character-list.dark {
+  .character-list__title {
+    color: $color-white;
+  }
+
+  .character-list__subtitle {
+    color: $color-gray-100;
+  }
+
+  .character-list__loading {
+    background-color: $color-gray-800;
+    border: 0.0625rem solid $color-gray-600;
+  }
+
+  .character-list__loading-spinner {
+    border: 0.25rem solid $color-gray-700;
+    border-top: 0.25rem solid $color-gray-500;
+  }
+
+  .character-list__loading-text {
+    color: $color-gray-500;
+  }
+
+  .character-list__error {
+    background-color: $color-gray-800;
+    border: 0.0625rem solid $color-gray-600;
+  }
+
+  .character-list__error-message {
+    color: $color-red-alpha-90;
+  }
+}

@@ -13,6 +13,7 @@ import { CharacterCardComponent, CharacterFilterComponent } from '@app/character
 import * as CharacterListActions from '@app/character-list/store/character-list.actions';
 import * as CharacterListSelectors from '@app/character-list/store/character-list.selectors';
 import { selectFilters } from '@app/character-list/store/character-list.selectors';
+import * as ThemeSelectors from '@app/shared/store/theme.selectors';
 
 import { hasActiveFilters } from '@app/character-list/utils/has-active-filters';
 import { ViewState } from '@app/character-list/enums';
@@ -40,6 +41,7 @@ export class CharacterListComponent extends UnsubscribleComponent implements OnI
   loading$: Observable<boolean>;
   error$: Observable<string | null>;
   viewState$: Observable<{ state: ViewState; error?: string }>;
+  isDarkMode$: Observable<boolean>;
 
   ViewState = ViewState;
 
@@ -51,6 +53,7 @@ export class CharacterListComponent extends UnsubscribleComponent implements OnI
     this.characters$ = this.store.select(CharacterListSelectors.selectCharacters);
     this.loading$ = this.store.select(CharacterListSelectors.selectLoading);
     this.error$ = this.store.select(CharacterListSelectors.selectError);
+    this.isDarkMode$ = this.store.select(ThemeSelectors.selectIsDarkMode);
 
     this.viewState$ = combineLatest([this.loading$, this.error$, this.characters$]).pipe(
       map(([loading, error, _characters]) => {

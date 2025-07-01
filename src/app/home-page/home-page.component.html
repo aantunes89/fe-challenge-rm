@@ -1,4 +1,4 @@
-<div class="home">
+<div class="home" [class.dark]="isDarkMode$ | async">
   <div class="home__container">
     <h1 class="home__title">Welcome to the Rick and Morty Explorer!</h1>
     <p class="home__description">

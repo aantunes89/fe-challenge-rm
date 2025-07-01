@@ -113,3 +113,30 @@
     }
   }
 }
+
+.home.dark {
+  .home__container {
+    background-color: $color-dark-blue;
+    color: $color-white;
+  }
+
+  .home__title {
+    color: $color-white;
+  }
+
+  .home__description {
+    color: $color-gray-500;
+  }
+
+  .home__api-info {
+    color: $color-gray-500;
+  }
+
+  .home__api-link {
+    color: $color-gray-500;
+
+    &:hover {
+      color: $color-white;
+    }
+  }
+}
